@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Xoá đơn giá dịch vụ";
+    var dichVuList = ViewBag.DichVuList as List<SelectListItem>;
+    var donGiaListJson = ViewBag.DonGiaJson as string;
+}
+
+@if (TempData["XoaDonGia_Success"] != null)
+{
+    <div class="alert alert-success">Xóa đơn giá thành công</div>
+}
+@if (TempData["XoaDonGia_Error"] != null)
+{
+    <div class="alert alert-danger">Cần chọn 1 dòng để xóa</div>
+}
+@if (TempData["XoaDonGia_Error_SL"] != null)
+{
+    <div class="alert alert-danger">Không thể xóa tất cả đơn giá</div>
+}
+<form asp-action="XoaDonGiaDV" method="post">
+    <div class="form-group">
+        <label for="MaDichVu">Chọn dịch vụ</label>
+        <select name="MaDichVu" id="MaDichVu" class="form-control" required onchange="renderDonGiaOptions()">
+            <option value="">-- Chọn dịch vụ --</option>
+            @foreach (var item in dichVuList)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="NgayApDung">Chọn đơn giá cần xoá</label>
+        <select name="NgayApDung" id="NgayApDung" class="form-control" size="6" required>
+            
+        </select>
+    </div>
+
+    <input type="hidden" name="DonGiaCount" id="DonGiaCount" value="0" />
+
+    <button type="submit" class="btn btn-danger mt-3">Xoá đơn giá</button>
+</form>
+
+@section Scripts {
+    <script>
+        const donGiaList = @Html.Raw(donGiaListJson);
+
+        function renderDonGiaOptions() {
+            const maDichVu = document.getElementById("MaDichVu").value;
+            const ngayDropdown = document.getElementById("NgayApDung");
+            const countInput = document.getElementById("DonGiaCount");
+
+            const list = donGiaList.filter(x =>
+                x.MaDichVu == maDichVu &&
+                x.DonGia !== null &&
+                x.NgayApDung !== null
+            );
+
+            countInput.value = list.length;
+
+            ngayDropdown.innerHTML = '';
+
+            list.forEach(item => {
+                const ngayDate = new Date(item.NgayApDung);
+                const yyyy = ngayDate.getFullYear();
+                const mm = String(ngayDate.getMonth() + 1).padStart(2, '0');
+                const dd = String(ngayDate.getDate()).padStart(2, '0');
+                const ngayVal = `${yyyy}-${mm}-${dd}`;
+                const ngayText = ngayDate.toLocaleDateString("vi-VN");
+
+                const donGiaFormatted = Number(item.DonGia).toLocaleString("vi-VN") + " đ";
+
+                const opt = document.createElement("option");
+                opt.value = ngayVal;
+                opt.text = `${donGiaFormatted} (áp dụng ${ngayText})`;
+                ngayDropdown.appendChild(opt);
+            });
+        }
+    </script>
+}

@@ -1,0 +1,18 @@
+ use QLBenhVien
+ go
+
+ -- MASTER KEY
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'MasterKeyStrongPassword@123';
+
+ --Tao Cert Bac Si ma hoa bang password 
+ CREATE CERTIFICATE BSCert
+ ENCRYPTION BY PASSWORD ='Cert_P@$$wOrd'
+ WITH SUBJECT = 'CertificateforBACSI'
+ GRANT CONTROL ON CERTIFICATE::BSCert TO userBenhVien;
+ GRANT CONTROL ON CERTIFICATE::BSCert TO userAccountBenhVien;
+ GRANT ALTER ON SCHEMA::dbo TO userAccountBenhVien;
+
+-- Cert ma hoa/giai ma cho QLTV
+CREATE CERTIFICATE CertQLTV
+WITH SUBJECT = 'CertQLTV';
+GRANT VIEW DEFINITION ON CERTIFICATE::CertQLTV TO userBenhVien;

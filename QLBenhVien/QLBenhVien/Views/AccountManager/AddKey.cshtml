@@ -1,0 +1,54 @@
+﻿@if (TempData["Success"] != null)
+{
+        <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+        <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="AddKey" method="post">
+    <div class="row">
+        <div class="col-6">
+            <label>Chọn tài khoản:</label>
+            <select name="username" id="usernameSelect" class="form-control" onchange="populateInfo()">
+                <option value="">-- Chọn tài khoản --</option>
+                @foreach (var user in (List<string>)ViewBag.UsernameList)
+                {
+                        <option value="@user">@user</option>
+                }
+            </select>
+
+            <label class="mt-2">Username:</label>
+            <input type="text" id="usernameDisplay" class="form-control" readonly />
+
+            <label>Mã nhân viên:</label>
+            <input type="text" id="maNhanVienDisplay" class="form-control" readonly />
+
+            <label>Loại tài khoản (typeID):</label>
+            <input type="text" id="typeIDDisplay" class="form-control" readonly />
+        </div>
+
+        <div class="col-6">
+            <label>Nhập khóa xác nhận:</label>
+            <input type="password" name="secretKey" class="form-control" required />
+
+            <button type="submit" class="btn btn-primary mt-3">Lưu khóa</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        const accountInfo = @Html.Raw(Json.Serialize(ViewBag.Accounts));
+
+        function populateInfo() {
+            const selected = document.getElementById("usernameSelect").value;
+            const account = accountInfo.find(a => a.username === selected);
+
+            document.getElementById("usernameDisplay").value = account?.username ?? "";
+            document.getElementById("maNhanVienDisplay").value = account?.maNhanVien ?? "";
+            document.getElementById("typeIDDisplay").value = account?.typeId ?? "";
+        }
+    </script>
+}

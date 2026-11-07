@@ -1,0 +1,81 @@
+﻿@model X.PagedList.IPagedList<QLBenhVien.Entities.ViewDieuPhoi>
+
+@{
+    var updatedStt = TempData["UpdatedStt"]?.ToString();
+    var updatedRow = Model.FirstOrDefault(x => x.Stt.ToString() == updatedStt);
+    var others = Model.Where(x => x.Stt.ToString() != updatedStt).ToList();
+    var orderedModel = others.ToList();
+    if (updatedRow != null)
+    {
+        orderedModel.Add(updatedRow);
+    }
+}
+
+<div class="container mt-1">
+    <table class="table" id="table-dieuphoi">
+        <thead>
+            <tr>
+                <th style="width: 2%; text-align:center;">STT</th>
+                <th style="width: 25%;">Bệnh nhân</th>
+                <th style="width: 25%;">Phòng khám</th>
+                <th style="width: 25%;">Bác sĩ</th>
+                <th style="width: 13%;">Dịch vụ</th>
+                <th style="width: 10%;">Khoa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in orderedModel)
+            {
+                <tr class="row-dieuphoi"
+                    data-id="@item.Stt"
+                    data-makhoa="@item.MaKhoa"
+                    data-madichvu="@item.MaDichVu"
+                    data-makham="@item.MaKhamBenh"
+                    data-selected="@(updatedStt == item.Stt.ToString() ? TempData["SelectedPhongKham"] : "")">
+                    <td style="text-align:center;">@item.Stt</td>
+                    <td>@item.TenBenhNhan</td>
+                    <td>
+                        <select class="form-select phong-kham-dropdown" name="maPhongKham">
+                            <option value="">-- Chọn phòng khám --</option>
+                         
+                        </select>
+                    </td>
+                    <td>@item.TenBacSi</td>
+                    <td>@item.TenDichVu</td>
+                    <td>@item.TenKhoa</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center d-flex justify-content-center">
+            <div class="col-4">
+                <form id="dieuphoiForm" method="post" asp-controller="DieuPhoi" asp-action="CapNhatMaPhong">
+                    <input type="hidden" id="selectedStt" name="stt" />
+                    <input type="hidden" id="selectedPhongKham" name="maPhongKham" />
+                    <button type="submit" class="btn btn-primary" id="btnDieuPhoi">Điều phối</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-end">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                         new PagedListRenderOptions
+                {
+                    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                    DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                    MaximumPageNumbersToDisplay = 5,
+                    UlElementClasses = new[] { "pagination" },
+                    LiElementClasses = new[] { "page-item" },
+                    PageClasses = new[] { "page-link" }
+                })
+            </div>
+        </div>
+    </div>
+</div>

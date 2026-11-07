@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Thêm đơn giá dịch vụ";
+    var dichVuList = ViewBag.DichVuList as List<SelectListItem>;
+    var donGiaListJson = ViewBag.DonGiaJson as string;
+}
+@if (TempData["NgayApDung_KhongPhuHop"] != null)
+{
+    <div class="alert alert-warning">Ngày áp dụng phải từ hôm nay trở đi.</div>
+}
+else if (TempData["NgayApDung_TonTai"] != null)
+{
+    <div class="alert alert-danger">Ngày áp dụng đã tồn tại cho dịch vụ này.</div>
+}
+else if (TempData["DonGia_Am"] != null)
+{
+    <div class="alert alert-danger">Đơn giá của dịch vụ không được âm</div>
+}
+else if (TempData["Success_NgayApDung"] != null)
+{
+    <div class="alert alert-success">Thêm đơn giá co dịch vụ thành công</div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="MaDichVu">Chọn dịch vụ</label>
+            <select name="MaDichVu" id="MaDichVu" class="form-control" required>
+                <option value="">-- Chọn dịch vụ --</option>
+                @foreach (var item in dichVuList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Đơn giá đã áp dụng trước đó</label>
+            <textarea class="form-control" id="donGiaCuText" rows="6" readonly></textarea>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <form asp-action="ThemDonGiaDV" method="post">
+            <input type="hidden" name="MaDichVu" id="MaDichVuHidden" />
+
+            <div class="form-group">
+                <label for="DonGia">Đơn giá mới</label>
+                <input type="number" step="0.01" name="DonGia" class="form-control" required />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="NgayApDung">Ngày áp dụng</label>
+                <input type="date" name="NgayApDung" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">Thêm đơn giá mới</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const donGiaList = @Html.Raw(donGiaListJson);
+
+        function updateDonGiaCu(maDichVu) {
+            const selected = donGiaList.filter(item => item.MaDichVu == maDichVu);
+            const textArea = document.getElementById("donGiaCuText");
+
+            if (!selected || selected.length === 0) {
+                textArea.value = "Chưa có đơn giá áp dụng";
+                return;
+            }
+
+            let text = selected.map(item => {
+                let gia = "Chưa có";
+                if (item.DonGia !== null && item.DonGia !== undefined && !isNaN(item.DonGia)) {
+                    gia = Number(item.DonGia).toLocaleString("vi-VN") + " đ";
+                }
+
+                let ngay = "Chưa có";
+                if (item.NgayApDung !== null && item.NgayApDung !== undefined) {
+                    try {
+                        const date = new Date(item.NgayApDung);
+                        if (!isNaN(date.getTime())) {
+                            ngay = date.toLocaleDateString("vi-VN");
+                        }
+                    } catch (e) {
+                    }
+                }
+
+                return `${gia} - (áp dụng ${ngay})`;
+            }).join("\n");
+
+            textArea.value = text;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("MaDichVu").addEventListener("change", function () {
+                const selectedValue = this.value;
+                document.getElementById("MaDichVuHidden").value = selectedValue;
+                updateDonGiaCu(selectedValue);
+            });
+        });
+    </script>
+
+}

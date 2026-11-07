@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Gán quyền cho tài khoản";
+    var allQuyens = (List<QLBenhVien.Entities.ViewQuyen>)ViewBag.AllQuyens;
+    var allQuyenTks = (List<QLBenhVien.Entities.ViewQuyenTk>)ViewBag.AllQuyenTks;
+    var usernames = (List<string>)ViewBag.UsernameList;
+}
+
+<div class="row">
+    <div class="col-6">
+        <label>Chọn tài khoản:</label>
+        <select id="usernameSelect" class="form-control" onchange="renderPermissions()">
+            <option value="">-- chọn tài khoản --</option>
+            @foreach (var user in usernames.Distinct())
+            {
+                <option value="@user">@user</option>
+            }
+        </select>
+
+        <label class="mt-3">Các quyền đã có:</label>
+        <textarea id="currentPermissions" class="form-control" rows="10" readonly></textarea>
+    </div>
+
+    <div class="col-6">
+        <label>Chọn quyền để gán:</label>
+        <select id="availablePermissions" class="form-control">
+            <option value="">-- quyền chưa có --</option>
+        </select>
+    </div>
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="selectedUsername" name="username" />
+        <input type="hidden" id="selectedPermissionId" name="permissionId" />
+
+        <button type="submit" class="btn btn-primary mt-3" onclick="return prepareSubmit()">Phân quyền</button>
+    </form>
+
+</div>
+@section Scripts {
+    <script>
+        const allPermissions = @Html.Raw(Json.Serialize(allQuyens));
+        const allQuyenTKs = @Html.Raw(Json.Serialize(allQuyenTks));
+
+        function renderPermissions() {
+            const username = document.getElementById("usernameSelect").value;
+            const currentBox = document.getElementById("currentPermissions");
+            const dropdown = document.getElementById("availablePermissions");
+
+            const owned = allQuyenTKs.filter(q => q.username === username);
+            const ownedIDs = owned.map(q => q.permissionId);
+
+            currentBox.value = owned.map(q => `${q.permissionId ?? 'N/A'} - ${q.permissionName ?? ''}`).join('\n');
+
+            dropdown.innerHTML = '<option value="">-- quyền chưa có --</option>';
+            allPermissions
+                .filter(p => !ownedIDs.includes(p.permissionId))
+                .forEach(p => {
+                    const opt = document.createElement("option");
+                    opt.value = p.permissionId;
+                    opt.text = `${p.permissionId} - ${p.permissionName}`;
+                    dropdown.appendChild(opt);
+                });
+        }
+
+        @if (TempData["SuccessCreate"] != null)
+        {
+            <text>alert('@TempData["SuccessCreate"]');</text>
+        }
+        @if (TempData["ErrorCreate"] != null)
+        {
+            <text>alert('Lỗi: @TempData["ErrorCreate"]');</text>
+        }
+        function prepareSubmit() {
+            const username = document.getElementById("usernameSelect").value;
+            const permissionId = document.getElementById("availablePermissions").value;
+
+            document.getElementById("selectedUsername").value = username;
+            document.getElementById("selectedPermissionId").value = permissionId;
+
+            return true; 
+        }
+
+    </script>
+}

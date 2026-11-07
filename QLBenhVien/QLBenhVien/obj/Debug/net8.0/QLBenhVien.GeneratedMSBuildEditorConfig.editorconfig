@@ -1,0 +1,121 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = QLBenhVien
+build_property.RootNamespace = QLBenhVien
+build_property.ProjectDir = C:\Users\Admin\Desktop\Protector_BMCSDL\QLBenhVien\QLBenhVien\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Admin\Desktop\Protector_BMCSDL\QLBenhVien\QLBenhVien
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountManager/AddKey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudE1hbmFnZXJcQWRkS2V5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountManager/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudE1hbmFnZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountManager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudE1hbmFnZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountPermission/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFBlcm1pc3Npb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountPermission/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFBlcm1pc3Npb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/AccountPermission/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFBlcm1pc3Npb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/BacSi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFjU2lcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/BenhNhan/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVuaE5oYW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/DieuPhoi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldVBob2lcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Khoa/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hvYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/QLTaiVu/ThemDonGiaDV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxUYWlWdVxUaGVtRG9uR2lhRFYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/QLTaiVu/XoaDonGiaDV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxUYWlWdVxYb2FEb25HaWFEVi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Shared/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlYmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/TaiVu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpVnVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/TaiVu/ThanhToan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpVnVcVGhhbmhUb2FuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Protector_BMCSDL/QLBenhVien/QLBenhVien/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-e0gue5bwle

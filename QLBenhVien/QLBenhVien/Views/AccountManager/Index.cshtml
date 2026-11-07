@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QLBenhVien.Entities.ViewTaiKhoan>
+
+@{
+    ViewData["Title"] = "Quản lý tài khoản";
+
+    var bacSi = Model.Where(m => m.TypeId == "1").ToList();
+    var qlns = Model.Where(m => m.TypeId == "2").ToList();
+    var dieuPhoi = Model.Where(m => m.TypeId == "3").ToList();
+    var taiVu = Model.Where(m => m.TypeId == "4").ToList();
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var group in new[] { ("Bác sĩ", bacSi), ("Quản lý nhân sự", qlns), ("Nhân viên điều phối", dieuPhoi), ("Nhân viên tài vụ", taiVu) })
+{
+    if (group.Item2.Any())
+    {
+        <h3>@group.Item1</h3>
+        <table class="table table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Username</th>
+                    <th>Mã nhân viên</th>
+                    <th>Ngày tạo</th>
+                    <th>Trạng thái khóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int stt = 1;
+                    foreach (var item in group.Item2)
+                    {
+                        <tr>
+                            <td>@stt</td>
+                            <td>@item.Username</td>
+                            <td>@item.MaNhanVien</td>
+                            <td>@item.CreatedDate?.ToString("dd/MM/yyyy")</td>
+                            <td>@(item.HasKey == "0" ? "Chưa có khóa" : "Đã có khóa")</td>
+                        </tr>
+                        stt++;
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}

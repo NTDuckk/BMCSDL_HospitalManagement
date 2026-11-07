@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Xóa quyền khỏi tài khoản";
+    var allQuyens = (List<QLBenhVien.Entities.ViewQuyen>)ViewBag.AllQuyens;
+    var allQuyenTks = (List<QLBenhVien.Entities.ViewQuyenTk>)ViewBag.AllQuyenTks;
+    var usernames = (List<string>)ViewBag.UsernameList;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="Delete" method="post">
+    <div class="row">
+        <div class="col-6">
+            <label>Chọn tài khoản:</label>
+            <select id="usernameSelect" name="username" class="form-control" onchange="renderPermissionsToDelete()">
+                <option value="">-- chọn tài khoản --</option>
+                @foreach (var user in usernames.Distinct())
+                {
+                    <option value="@user">@user</option>
+                }
+            </select>
+
+            <label class="mt-3">Các quyền hiện có:</label>
+            <select id="permissionToDelete" name="permissionId" class="form-control" size="10">
+                <option value="">-- chọn quyền cần xóa --</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-danger mt-5">Xóa quyền</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        const allQuyenTKs = @Html.Raw(Json.Serialize(allQuyenTks));
+
+        function renderPermissionsToDelete() {
+            const username = document.getElementById("usernameSelect").value;
+            const dropdown = document.getElementById("permissionToDelete");
+
+            const owned = allQuyenTKs.filter(q => q.username === username);
+            dropdown.innerHTML = '<option value="">-- chọn quyền cần xóa --</option>';
+            owned.forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.permissionId;
+                opt.text = `${p.permissionId ?? 'N/A'} - ${p.permissionName ?? ''}`;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        @if (TempData["SuccessDelete"] != null)
+        {
+            <text>alert('@TempData["SuccessDelete"]');</text>
+        }
+        @if (TempData["ErrorDelete"] != null)
+        {
+            <text>alert('Lỗi: @TempData["ErrorDelete"]');</text>
+        }
+    </script>
+}

@@ -1,0 +1,83 @@
+﻿@model QLBenhVien.Models.BenhNhan
+
+@{
+    ViewData["Title"] = "Thêm Bệnh nhân";
+}
+
+<div class="container mt-1">
+    <h2>Thêm Bệnh nhân</h2>
+
+    @if (Context.Request.Query["success"] == "true")
+    {
+        <div class="alert alert-success">Thêm bệnh nhân thành công!</div>
+    }
+
+    <form asp-action="Create" method="post">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label asp-for="HoTen" class="form-label">Họ tên</label>
+                <input asp-for="HoTen" class="form-control" />
+                <span asp-validation-for="HoTen" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                <select asp-for="GioiTinh" class="form-select">
+                    <option value="">-- Chọn --</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
+                </select>
+                <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+                <input asp-for="SoDienThoai" class="form-control" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+        </div>
+
+         <div class="row mb-3"> 
+             <div class="col-md-4"> 
+                 <label asp-for="NamSinh" class="form-label">Năm sinh</label> 
+                 <input asp-for="NamSinh" class="form-control" /> 
+                 <span asp-validation-for="NamSinh" class="text-danger"></span> 
+             </div> 
+             <div class="col-md-4"> 
+                 <label asp-for="ChieuCao" class="form-label">Chiều cao (cm)</label> 
+                 <input asp-for="ChieuCao" class="form-control" /> 
+                 <span asp-validation-for="ChieuCao" class="text-danger"></span> 
+             </div> 
+             <div class="col-md-4"> 
+                 <label asp-for="CanNang" class="form-label">Cân nặng (kg)</label> 
+                 <input asp-for="CanNang" class="form-control" /> 
+                 <span asp-validation-for="CanNang" class="text-danger"></span> 
+             </div> 
+         </div> 
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="MaKhoa" class="form-label">Khoa</label>
+                <select asp-for="MaKhoa" class="form-select" asp-items="@(ViewBag.KhoaList as SelectList)">
+                    <option value="">-- Chọn khoa --</option>
+                </select>
+                <span asp-validation-for="MaKhoa" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-2">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

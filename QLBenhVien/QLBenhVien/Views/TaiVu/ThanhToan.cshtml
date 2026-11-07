@@ -1,0 +1,144 @@
+﻿@model QLBenhVien.Models.HoaDon
+@{
+    var chiTiet = ViewBag.ChiTietHoaDon as List<QLBenhVien.Entities.ViewChiTietHoaDonTaiVu>;
+    var first = chiTiet.FirstOrDefault();
+    var totalAmount = (decimal)ViewBag.TotalAmount;
+    var rowCount = chiTiet.Count;
+}
+
+<style>
+    .invoice-table th {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .invoice-table td {
+        vertical-align: middle;
+    }
+
+        .invoice-table td:nth-child(1) {
+            width: 10%;
+            text-align: center;
+        }
+
+        .invoice-table td:nth-child(2),
+        .invoice-table td:nth-child(3),
+        .invoice-table td:nth-child(4) {
+            text-align: left;
+        }
+
+    .invoice-table th:nth-child(1) {
+        width: 10%;
+    }
+
+    .invoice-table th:nth-child(2) {
+        width: 10%;
+    }
+
+    .invoice-table th:nth-child(3) {
+        width: 50%;
+    }
+
+    .invoice-table th:nth-child(4) {
+        width: 30%;
+    }
+
+    .form-control {
+        max-width: 300px;
+        text-align: right;
+    }
+</style>
+
+<div class="container mt-3">
+    <h4>Chi tiết hóa đơn</h4>
+
+    @if (first != null)
+    {
+        <div class="mb-3 text-end">
+            <p><strong>Ngày Lập:</strong> @first.NgayLap?.ToString("dd/MM/yyyy")</p>
+            <p><strong>Tên Bệnh Nhân:</strong> @first.TenBenhNhan</p>
+        </div>
+
+        <table class="table table-bordered table-striped invoice-table">
+            <thead>
+                <tr>
+                    <th>Mã Hóa Đơn</th>
+                    <th>Mã Dịch Vụ</th>
+                    <th>Tên Dịch Vụ</th>
+                    <th>Đơn Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    bool firstRow = true;
+                    foreach (var item in chiTiet)
+                    {
+                        <tr>
+                            @if (firstRow)
+                            {
+                                <td rowspan="@rowCount" style="text-align:center;">@item.MaHoaDon</td>
+                                firstRow = false;
+                            }
+                            <td style="text-align:left;">@item.MaDichVu</td>
+                            <td>@item.TenDichVu</td>
+                            <td>
+                                @(item.DonGia.HasValue ? item.DonGia.Value.ToString("N0") : "")
+                            </td>
+
+
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="3" style="text-align:right;"><strong>Tổng cộng:</strong></td>
+                    <td>@totalAmount.ToString("N0")</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form asp-action="XacNhanThanhToan" asp-controller="TaiVu" method="post" onsubmit="return kiemTraTien()" class="mt-4">
+            <input type="hidden" asp-for="MaHoaDon" />
+            <input type="hidden" asp-for="SoTienThoi" id="soTienThoiInput" />
+
+            <div class="d-flex justify-content-end align-items-start gap-3">
+                <div>
+                    <label class="form-label"><strong>Tiền nhận:</strong></label>
+                    <input asp-for="SoTienNhan" id="tienNhan" class="form-control" style="width: 200px;" oninput="tinhTienThoi()" required />
+                </div>
+                <div>
+                    <label class="form-label"><strong>Tiền thối lại:</strong></label>
+                    <input type="text" id="tienThoi" class="form-control" style="width: 200px;" readonly />
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end gap-2">
+                <a href="@Url.Action("Index", "TaiVu")" class="btn btn-secondary">Quay lại danh sách</a>
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">Không tìm thấy chi tiết hóa đơn.</div>
+    }
+</div>
+
+<script>
+    var tong = @totalAmount;
+
+    function tinhTienThoi() {
+        var tienNhan = parseFloat(document.getElementById("tienNhan").value) || 0;
+        var tienThoi = tienNhan - tong;
+        document.getElementById("tienThoi").value = tienThoi >= 0 ? tienThoi.toLocaleString() : "0";
+        document.getElementById("soTienThoiInput").value = tienThoi >= 0 ? tienThoi.toFixed(2) : "0.00"
+    }
+
+    function kiemTraTien() {
+        var tienNhan = parseFloat(document.getElementById("tienNhan").value) || 0;
+        if (tienNhan < tong) {
+            alert("Số tiền nhận chưa đủ để thanh toán.");
+            return false;
+        }
+        return true;
+    }
+</script>

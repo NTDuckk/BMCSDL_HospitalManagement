@@ -1,0 +1,161 @@
+﻿@model QLBenhVien.Entities.ViewBenhNhanTrongNgay
+
+@{
+    ViewBag.Title = "Khám bệnh";
+    var khongConBenhNhan = ViewBag.KhongConBenhNhan == true;
+}
+
+<body>
+    @if (khongConBenhNhan)
+    {
+        <h1 class="text-center text-danger">Không còn bệnh nhân đang đợi khám</h1>
+    }
+    else
+    {
+        <h4 class="fw-bold mb-2">Thông tin bệnh nhân</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th class="w-50">Mã BN</th><td>@Model.MaBenhNhan</td></tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th class="w-50">Mã khám</th><td>@Model.MaKhamBenh</td></tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-bordered table-fixed">
+                    <tr><th class="w-25">Họ tên</th><td>@Model.HoTen</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th>Giới tính</th><td>@Model.GioiTinh</td></tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th>Năm sinh</th><td>@Model.NamSinh</td></tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th>Chiều cao</th><td>@Model.ChieuCao</td></tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table table-bordered table-fixed">
+                    <tr><th>Cân nặng</th><td>@Model.CanNang</td></tr>
+                </table>
+            </div>
+        </div>
+        <form id="mainForm" method="post" action="">
+            <div class="row mt-4">
+                <div class="col-md-9">
+                    <div id="khamContent" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Triệu chứng</label>
+                            <textarea name="TrieuChung" class="form-control" rows="5">@TempData["TrieuChung"]</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Chẩn đoán cuối cùng</label>
+                            <textarea name="ChanDoanCuoiCung" class="form-control" rows="5">@TempData["ChanDoanCuoiCung"]</textarea>
+                        </div>
+                    </div>
+
+                    <div id="xetnghiemContent" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Chọn dịch vụ xét nghiệm</label>
+                            <select name="MaDichVu" class="form-select">
+                                <option value="">-- Chọn dịch vụ --</option>
+                                @foreach (var item in (SelectList)ViewBag.DanhSachDichVu)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3 mt-5">
+                            <label class="form-label fw-bold">Ghi chú xét nghiệm</label>
+                            <textarea name="GhiChuXet" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="ketoaContent" class="d-none mt-4">
+                        <h5 class="fw-bold text-center mb-3">Thông tin kê toa thuốc</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>STT</th>
+                                    <th>Tên thuốc</th>
+                                    <th>Số lượng</th>
+                                    <th>Liều dùng</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <tr>
+                                        <td class="text-center">@i</td>
+                                        <td><input name="TenThuoc_@i" class="form-control" /></td>
+                                        <td><input name="SoLuong_@i" type="number" min="1" class="form-control" /></td>
+                                        <td><input name="LieuDung_@i" class="form-control" /></td>
+                                        <td><input name="GhiChu_@i" class="form-control" /></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <input type="hidden" name="HanhDong" id="currentAction" />
+
+                    <div id="xacNhanSection" class="d-none mt-4">
+                        @* <label class="form-label fw-bold">Nhập khóa xác nhận</label> *@
+                        @* <input type="password" name="MaKhoaBS" class="form-control" placeholder="Nhập khóa..." /> *@
+                        <div class="text-center mt-3 d-flex justify-content-center gap-3">
+                            <button type="submit" class="btn btn-success">Xác nhận</button>
+                            <button type="button" id="btnHuy" class="btn btn-danger">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="actionButtons" class="col-md-3 d-flex flex-column justify-content-start gap-3">
+                    <button type="button" class="btn btn-primary action-btn" data-action="kham" data-post-url="@Url.Action("LuuThongTinKham", "BacSi")">Khám bệnh</button>
+                    <button type="button" class="btn btn-warning action-btn" data-action="xetnghiem" data-post-url="@Url.Action("LuuXetNghiem", "BacSi")">Cho đi xét nghiệm</button>
+                    <button type="button" class="btn btn-success action-btn" data-action="ketoa" data-post-url="@Url.Action("LuuToaThuoc", "BacSi")">Kê toa thuốc</button>
+                    <button type="button" id="btnLayBenhNhanKe" class="btn btn-info" disabled
+                            data-url="@Url.Action("Index", "BacSi")">
+                        Lấy bệnh nhân kế
+                    </button>
+
+                </div>
+            </div>
+        </form>
+       
+        @section Scripts {
+        @if (TempData["Error"] != null)
+            {
+                <script>alert("@TempData["Error"]");</script>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <script>alert("@TempData["Success"]");</script>
+            }
+            @if (TempData["Done"]?.ToString() == "true")
+            {
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        if (typeof hoanTatXuLy === "function") {
+                            hoanTatXuLy();
+                        }
+                    });
+                </script>
+            }
+            <script src="~/js/bacsi.js"></script>
+        }
+    }
+    
+</body>

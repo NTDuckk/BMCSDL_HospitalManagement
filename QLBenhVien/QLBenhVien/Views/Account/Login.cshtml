@@ -1,0 +1,68 @@
+﻿@model QLBenhVien.Models.AccountLogin
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QLBenhVien</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="bg-form">
+            <div class="bg-white">
+                <div class="row">
+                    <div class="col-7">
+                        <img src="~/images/doctor.png" alt="Alternate Text" class="w-100 bg-img" />
+                    </div>
+                    <div class="col-5">
+                        <form asp-action="Login" method="post">
+                            <h2>Đăng nhập</h2>
+                            <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                            <div>
+                                <label asp-for="Username"></label>
+                                <input asp-for="Username" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" type="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <button type="submit">Đăng nhập</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.InvalidLogin != null && (bool)ViewBag.InvalidLogin)
+    {
+        <script>
+            alert("Sai tên đăng nhập hoặc mật khẩu.");
+        </script>
+    }
+    @if (TempData["NoSchedule"] != null)
+    {
+        <script>
+            alert("Không có lịch làm hôm nay!");
+        </script>
+    }
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

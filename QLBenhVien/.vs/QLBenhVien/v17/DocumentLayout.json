@@ -1,0 +1,160 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\services\\dynamicconnectionprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\services\\dynamicconnectionprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\controllers\\taivucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\controllers\\taivucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\controllers\\accountpermissioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\controllers\\accountpermissioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\controllers\\accountmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\controllers\\accountmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\views\\accountpermission\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\views\\accountpermission\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\views\\accountpermission\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\views\\accountpermission\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|c:\\users\\admin\\desktop\\protector_bmcsdl\\qlbenhvien\\qlbenhvien\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958E05E8-92AD-41E0-BCA5-E390C96C06B6}|QLBenhVien\\QLBenhVien.csproj|solutionrelative:qlbenhvien\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DynamicConnectionProvider.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Services\\DynamicConnectionProvider.cs",
+              "RelativeDocumentMoniker": "QLBenhVien\\Services\\DynamicConnectionProvider.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Services\\DynamicConnectionProvider.cs",
+              "RelativeToolTip": "QLBenhVien\\Services\\DynamicConnectionProvider.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACIAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T18:24:54.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\AccountPermission\\Delete.cshtml",
+              "RelativeDocumentMoniker": "QLBenhVien\\Views\\AccountPermission\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\AccountPermission\\Delete.cshtml",
+              "RelativeToolTip": "QLBenhVien\\Views\\AccountPermission\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T12:17:24.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountPermissionController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountPermissionController.cs",
+              "RelativeDocumentMoniker": "QLBenhVien\\Controllers\\AccountPermissionController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountPermissionController.cs",
+              "RelativeToolTip": "QLBenhVien\\Controllers\\AccountPermissionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T12:17:30.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\AccountPermission\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLBenhVien\\Views\\AccountPermission\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\AccountPermission\\Create.cshtml",
+              "RelativeToolTip": "QLBenhVien\\Views\\AccountPermission\\Create.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAuwEEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T12:17:24.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountManagerController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountManagerController.cs",
+              "RelativeDocumentMoniker": "QLBenhVien\\Controllers\\AccountManagerController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountManagerController.cs",
+              "RelativeToolTip": "QLBenhVien\\Controllers\\AccountManagerController.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAAJ0AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T16:36:05.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "QLBenhVien\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "QLBenhVien\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T16:26:49.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaiVuController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\TaiVuController.cs",
+              "RelativeDocumentMoniker": "QLBenhVien\\Controllers\\TaiVuController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Controllers\\TaiVuController.cs",
+              "RelativeToolTip": "QLBenhVien\\Controllers\\TaiVuController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T16:25:19.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Sidebar.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeDocumentMoniker": "QLBenhVien\\Views\\Shared\\_Sidebar.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Protector_BMCSDL\\QLBenhVien\\QLBenhVien\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeToolTip": "QLBenhVien\\Views\\Shared\\_Sidebar.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwMoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-27T16:39:34.532Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

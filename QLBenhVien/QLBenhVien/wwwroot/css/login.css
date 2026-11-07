@@ -1,0 +1,16 @@
+﻿
+.bg-form {
+    background-image: url("../images/bg1.jpg");
+    max-height: 100vh;
+    background-size: cover;
+    padding: 100px;
+}
+
+.bg-white{
+    background-color:#fff;
+    min-height: 100px;
+}
+.bg-img{
+    max-height: 500px;
+    max-width: 500px;
+}

@@ -1,0 +1,47 @@
+﻿@model QLBenhVien.Models.AccountCreate
+
+<h2>Tạo tài khoản mới</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@TempData["ErrorMessage"]");
+    </script>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@TempData["SuccessMessage"]");
+    </script>
+}
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhanVien">Mã nhân viên</label>
+        <select asp-for="MaNhanVien" class="form-control" asp-items="ViewBag.MaNhanVienList">
+            <option value="">-- Chọn mã nhân viên --</option>
+        </select>
+        <span asp-validation-for="MaNhanVien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TypeID">Loại tài khoản</label>
+        <select asp-for="TypeID" class="form-control" asp-items="ViewBag.LoaiTaiKhoanList">
+            <option value="">-- Chọn loại tài khoản --</option>
+        </select>
+        <span asp-validation-for="TypeID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Tạo</button>
+</form>

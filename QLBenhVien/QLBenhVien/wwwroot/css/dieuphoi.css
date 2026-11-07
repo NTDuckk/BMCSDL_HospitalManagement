@@ -1,0 +1,15 @@
+﻿body {
+}
+#table-dieuphoi tbody tr.selected-dieuphoi {
+    background-color: #ffec85;
+}
+
+#table-dieuphoi tbody tr:hover {
+    cursor: pointer;
+    background-color: #c3c3c3;
+}
+
+#table-dieuphoi td, #table-dieuphoi th{
+    text-align: center;
+    vertical-align: middle;
+}

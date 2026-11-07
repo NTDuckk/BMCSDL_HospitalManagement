@@ -1,0 +1,233 @@
+﻿CREATE DATABASE QLBenhVien;
+GO
+USE QLBenhVien;
+GO
+
+--Thông tin cá nhân
+CREATE TABLE THONGTIN_CANHAN (
+    maNhanVien VARCHAR(10) PRIMARY KEY,
+    hoTen NVARCHAR(100) NOT NULL,
+    ngaySinh DATE,
+    diaChi NVARCHAR(255),
+    soDienThoai VARCHAR(20),
+    email VARCHAR(100),
+    luongCoBan VARBINARY(MAX) NOT NULL,
+    phuCap VARBINARY(MAX) NOT NULL,
+);
+
+CREATE TABLE PHONGBAN (
+    maPhongBan VARCHAR(10) PRIMARY KEY,
+    tenPhongBan NVARCHAR(100) NOT NULL,
+);
+
+CREATE TABLE KHOA (
+    maKhoa VARCHAR(10) PRIMARY KEY,
+    tenKhoa NVARCHAR(100) NOT NULL,
+);
+
+
+-- Dịch vụ y tế
+CREATE TABLE DICHVU (
+    maDichVu INT PRIMARY KEY IDENTITY(1,1),
+    tenDichVu NVARCHAR(100) NOT NULL,
+	typeID VARCHAR(2)
+);
+
+-- Đơn giá dịch vụ
+CREATE TABLE DONGIA_DICHVU (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    maDichVu INT NOT NULL,
+    donGia VARBINARY(MAX),
+    ngayApDung DATE NOT NULL,
+    FOREIGN KEY (maDichVu) REFERENCES DICHVU(maDichVu),
+    UNIQUE (maDichVu, ngayApDung)
+);
+
+CREATE TABLE PHONGKHAM (
+    maPhongKham VARCHAR(10) PRIMARY KEY,
+    tenPhongKham NVARCHAR(100),
+	maKhoa VARCHAR(10),
+	maDichVu INT,
+    FOREIGN KEY (maKhoa) REFERENCES KHOA(maKhoa),
+    FOREIGN KEY (maDichVu) REFERENCES DICHVU(maDichVu),
+);
+
+-- Nhân viên
+CREATE TABLE NHANVIEN (
+    maNhanVien VARCHAR(10) PRIMARY KEY,
+    maPhongBan VARCHAR(10),
+    chucVu VARCHAR(2),
+    FOREIGN KEY (maPhongBan) REFERENCES PHONGBAN(maPhongBan),
+    FOREIGN KEY (maNhanVien) REFERENCES THONGTIN_CANHAN(maNhanVien),
+);
+
+-- Bác sĩ
+CREATE TABLE BACSI (
+    maBacSi VARCHAR(10) PRIMARY KEY,
+	maKhoa VARCHAR(10) NOT NULL,
+    chuyenMon NVARCHAR(50),
+    FOREIGN KEY (maKhoa) REFERENCES KHOA(maKhoa),
+    FOREIGN KEY (maBacSi) REFERENCES THONGTIN_CANHAN(maNhanVien),
+);
+
+-- Chấm công
+CREATE TABLE CHAMCONG (
+    maChamCong INT PRIMARY KEY IDENTITY(1,1),
+    maNhanVien VARCHAR(10) NOT NULL,
+    ngayChamCong DATE NOT NULL,
+    gioVao TIME,
+    gioRa TIME,
+    ghiChu NVARCHAR(MAX),
+    FOREIGN KEY (maNhanVien) REFERENCES THONGTIN_CANHAN(maNhanVien)
+);
+
+-- Lịch làm việc
+CREATE TABLE LICH_LAMVIEC (
+    maLich INT PRIMARY KEY IDENTITY(1,1),
+    maNhanVien VARCHAR(10) NOT NULL,
+    maPhongKham VARCHAR(10),
+    ngayLam DATE NOT NULL,
+    gioBatDau TIME NOT NULL,
+    gioKetThuc TIME NOT NULL,
+    ghiChu NVARCHAR(MAX),
+    FOREIGN KEY (maNhanVien) REFERENCES THONGTIN_CANHAN(maNhanVien),
+    FOREIGN KEY (maPhongKham) REFERENCES PHONGKHAM(maPhongKham)
+);
+
+-- Bệnh nhân
+CREATE TABLE BENHNHAN (
+    maBenhNhan VARCHAR(10) PRIMARY KEY,
+    hoTen NVARCHAR(100) NOT NULL,
+	gioiTinh VARCHAR(3),
+	chieuCao float,
+	canNang float,
+    namSinh INT,
+    diaChi NVARCHAR(255),
+    soDienThoai VARCHAR(20),
+    ngayTao DATETIME DEFAULT GETDATE()
+);
+
+
+CREATE TABLE KHAMBENH (
+    maKhamBenh INT PRIMARY KEY IDENTITY(1,1),
+    maBenhNhan VARCHAR(10) NOT NULL,
+	maBacSi VARCHAR(10),
+    ngayKham DATETIME DEFAULT GETDATE(),
+	ngayTaiKham DATETIME,
+    trieuChung VARBINARY(MAX),
+    chanDoanCuoiCung VARBINARY(MAX),
+    UNIQUE (maBenhNhan, ngayKham),
+    FOREIGN KEY (maBenhNhan) REFERENCES BENHNHAN(maBenhNhan),
+    FOREIGN KEY (maBacSi) REFERENCES BACSI(maBacSi)
+);
+
+CREATE TABLE CHITIET_KHAMBENH (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    maKhamBenh INT FOREIGN KEY REFERENCES KHAMBENH(maKhamBenh),
+    maBacSiYeuCau VARCHAR(10),
+    maBacSiKham VARCHAR(10),
+	maPhongKham VARCHAR(10),
+	maKhoa VARCHAR(10),
+	maDichVu INT FOREIGN KEY REFERENCES DICHVU(maDichVu),
+    thoiGianKham DATETIME DEFAULT GETDATE(),
+	ghiChuBacSiKham VARBINARY(MAX),
+	TrangThai VARCHAR(1) DEFAULT '0'
+    FOREIGN KEY (maKhoa) REFERENCES KHOA(maKhoa),
+    FOREIGN KEY (maBacSiYeuCau) REFERENCES BACSI(maBacSi),
+    FOREIGN KEY (maBacSiKham) REFERENCES BACSI(maBacSi),
+    FOREIGN KEY (maPhongKham) REFERENCES PHONGKHAM(maPhongKham)
+);
+
+-- Thuốc
+CREATE TABLE THUOC (
+    maThuoc VARCHAR(10) PRIMARY KEY,
+    tenThuoc NVARCHAR(100) NOT NULL,
+    donViTinh NVARCHAR(20),
+	soLuongTon INT NOT NULL CHECK (soLuongTon >= 0),
+    ngayCapNhat DATETIME DEFAULT GETDATE(),
+);
+
+-- Đơn giá thuốc
+CREATE TABLE DONGIA_THUOC (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    maThuoc VARCHAR(10) NOT NULL,
+    donGia VARBINARY(MAX),
+    ngayApDung DATE NOT NULL,
+    FOREIGN KEY (maThuoc) REFERENCES THUOC(maThuoc),
+    UNIQUE (maThuoc, ngayApDung)
+);
+
+CREATE TABLE TOATHUOC (
+    maToaThuoc INT PRIMARY KEY IDENTITY(1,1),
+    maKhamBenh INT NOT NULL,
+    ngayKe DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (maKhamBenh) REFERENCES KHAMBENH(maKhamBenh)
+);
+
+-- Chi tiết toa thuốc
+CREATE TABLE CHITIET_TOATHUOC (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    maToaThuoc INT NOT NULL,
+    tenThuoc VARBINARY(MAX),
+    soLuong INT NOT NULL CHECK (soLuong > 0),
+    lieuDung NVARCHAR(100),
+    ghiChu VARBINARY(MAX),
+    FOREIGN KEY (maToaThuoc) REFERENCES TOATHUOC(maToaThuoc),
+);
+
+CREATE TABLE DANHSACH_BENHNHAN (
+    maBenhNhan VARCHAR(10),
+    maPhongKham VARCHAR(10),
+	maKhamBenh INT,
+    tinhTrang VARCHAR(1) DEFAULT '0'  ,
+    ngayKham DATETIME DEFAULT GETDATE(),
+    PRIMARY KEY (maBenhNhan, maPhongKham, ngayKham),
+    FOREIGN KEY (maPhongKham) REFERENCES PHONGKHAM(maPhongKham),
+    FOREIGN KEY (maKhamBenh) REFERENCES KHAMBENH(maKhamBenh),
+    FOREIGN KEY (maBenhNhan) REFERENCES BENHNHAN(maBenhNhan)
+);
+
+-- Hóa đơn
+CREATE TABLE HOADON (
+    maHoaDon INT PRIMARY KEY IDENTITY(1,1),
+    ngayLap DATETIME DEFAULT GETDATE(),
+    soTienNhan DECIMAL(15,2),
+    soTienThoi DECIMAL(15,2),
+    loaiHoaDon VARCHAR(2),
+	maKhamBenh INT,
+    thanhToan VARCHAR(1) DEFAULT '0',
+    nhanVienThu VARCHAR(10) NOT NULL,
+	FOREIGN KEY (maKhamBenh) REFERENCES KHAMBENH(maKhamBenh),
+    FOREIGN KEY (nhanVienThu) REFERENCES NHANVIEN(maNhanVien)
+);
+
+CREATE TABLE CHITIET_HOADON_THUOC (
+	ID INT PRIMARY KEY IDENTITY(1,1),
+    maHoaDon INT NOT NULL,
+    maThuoc VARCHAR(10) NOT NULL,
+	donGia VARBINARY(MAX),
+	donViTinh NVARCHAR(20),
+	soLuong INT NOT NULL CHECK (soLuong > 0)
+    FOREIGN KEY (maHoaDon) REFERENCES HOADON(maHoaDon),
+    FOREIGN KEY (maThuoc) REFERENCES THUOC(maThuoc)
+);
+
+CREATE TABLE CHITIET_HOADON_KHAMCHUABENH (
+	ID INT PRIMARY KEY IDENTITY(1,1),
+    maHoaDon INT NOT NULL,
+	maChiTietKham INT,
+	donGia VARBINARY(MAX),
+    FOREIGN KEY (maHoaDon) REFERENCES HOADON(maHoaDon),
+	FOREIGN KEY (maChiTietKham) REFERENCES CHITIET_KHAMBENH(ID)
+);
+
+-- Lịch sử thao tác
+--CREATE TABLE LOGGING (
+--    maThaoTac VARCHAR(10) PRIMARY KEY,
+--    maTaiKhoan VARCHAR(10) NOT NULL,
+--    bang VARCHAR(50), -- BANG_BI_TAC_DONG
+--    hanhDong VARCHAR(20), -- INSERT, UPDATE, DELETE
+--    chiTiet NVARCHAR(MAX), -- CHI_TIET_THAO_TAC
+--    thoiGian DATETIME DEFAULT GETDATE(),
+--    FOREIGN KEY (maTaiKhoan) REFERENCES Account(username)
+--);

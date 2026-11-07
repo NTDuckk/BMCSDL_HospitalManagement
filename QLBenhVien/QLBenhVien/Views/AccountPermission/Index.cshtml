@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Quyền Tài Khoản";
+}
+
+<h2>Quyền tài khoản</h2>
+
+<form method="get" asp-action="Index">
+    <div class="form-group">
+        <label for="selectedUser">Chọn tài khoản:</label>
+        <select id="selectedUser" name="selectedUser" class="form-control" asp-items="ViewBag.UsernameList" onchange="this.form.submit()">
+            <option value="">-- Chọn tài khoản --</option>
+        </select>
+    </div>
+</form>
+
+@if (ViewBag.PermissionDetails != null && !string.IsNullOrWhiteSpace(ViewBag.PermissionDetails))
+{
+    <div class="form-group mt-3">
+        <label>Danh sách quyền:</label>
+        <textarea class="form-control" rows="8" readonly>@ViewBag.PermissionDetails</textarea>
+    </div>
+}
